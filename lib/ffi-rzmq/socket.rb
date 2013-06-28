@@ -63,9 +63,10 @@ module ZMQ
     #    # error handling
     #  end
     #
-    def initialize context_ptr, type, opts = {:receiver_class => ZMQ::Message}
+    def initialize context_ptr, type, options = {}
       # users may override the classes used for receiving; class must conform to the
       # same public API as ZMQ::Message
+      opts = { :receiver_class => ZMQ::Message }.merge(options)
       @receiver_klass = opts[:receiver_class]
 
       context_ptr = context_ptr.pointer if context_ptr.kind_of?(ZMQ::Context)

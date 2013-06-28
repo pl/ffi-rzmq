@@ -134,10 +134,10 @@ module ZMQ
     # Returns a #ZMQ::Socket when the allocation succeeds, nil
     # if it fails.
     #
-    def socket type
+    def socket(type, options = {})
       sock = nil
       begin
-        sock = Socket.new @context, type
+        sock = Socket.new(@context, type, options)
       rescue ContextError => e
         sock = nil
       end
